@@ -15,6 +15,9 @@ const RUNNERS_INTEL_DEMO =
 const RUNNERS_AGRO_DEMO =
   "https://runnerbot1-demo-8ugjjko9edsvk6wjat9jgr.streamlit.app/";
 
+const RUNNERS_HEALTH_EDU_DEMO =
+  "https://runners-intel-health-education-demo-beqhkm5oaeij68kszyewwl.streamlit.app/";
+
 function runnerbotReply(input) {
   const text = input.toLowerCase();
 
@@ -27,7 +30,19 @@ function runnerbotReply(input) {
   }
 
   if (text.includes("invest") || text.includes("fund") || text.includes("partner")) {
-    return "Runners Futurum is open to strategic investment, institutional pilots, funding, sponsorship, and partnerships across Runners Intel, Runners Agro, Runners Errands, Bites AI, and Padi AI. Serious partners can use the investor room or contact runnersfuturum@gmail.com.";
+    return "Runners Futurum is open to strategic investment, institutional pilots, funding, sponsorship, and partnerships across Runners Intel, Runners Agro, Runners Errands, Bites AI, Padi AI, Runnerbot 2 SME Growth Agent, and the Healthcare + Education AI pilots. Serious partners can use the investor room or contact runnersfuturum@gmail.com.";
+  }
+
+  if (
+    text.includes("health") ||
+    text.includes("clinic") ||
+    text.includes("hospital") ||
+    text.includes("education") ||
+    text.includes("school") ||
+    text.includes("waec") ||
+    text.includes("jamb")
+  ) {
+    return "The Healthcare + Education demo is a Runners Intel pilot package. Healthcare AI supports symptom triage, urgency routing, case logging and admin intelligence. Education AI supports WAEC/JAMB explanations, quizzes, answer marking, next lessons and teacher dashboards. The demo is available in the investor room.";
   }
 
   if (text.includes("agro") || text.includes("farm") || text.includes("agriculture") || text.includes("ogun")) {
@@ -39,10 +54,10 @@ function runnerbotReply(input) {
   }
 
   if (text.includes("runnerbot") || text.includes("intel") || text.includes("sme")) {
-    return "Runnerbot 2 is the Runners Intel AI command layer. Venture 1 is the SME Growth Agent: a WhatsApp-first copilot for leads, follow-ups, invoicing, payments, delivery, and customer memory.";
+    return "Runnerbot 2 is the Runners Intel AI command layer. Venture 1 is the SME Growth Agent: a WhatsApp-first copilot for leads, follow-ups, invoicing, payments, delivery, and customer memory. The live demo is inside the investor room.";
   }
 
-  return "Runners Futurum is building practical AI and innovation infrastructure for Nigeria, starting with Runners Intel, Runners Agro, Runners Errands, Bites AI, and Padi AI. Ask me about investment, partnerships, Bites AI, Padi AI, Agro, Errands, or Runnerbot 2.";
+  return "Runners Futurum is building practical AI and innovation infrastructure for Nigeria, starting with Runners Intel, Runners Agro, Runners Errands, Bites AI, Padi AI, Runnerbot 2 SME Growth Agent, and Healthcare + Education AI pilots. Ask me about investment, partnerships, Bites AI, Padi AI, Agro, Errands, Healthcare, Education, or Runnerbot 2.";
 }
 
 export default function Home() {
@@ -120,7 +135,8 @@ export default function Home() {
             <p className="mt-6 max-w-3xl text-base leading-8 text-blue-100 md:text-lg">
               Runners Futurum connects practical Nigerian problems with intelligent products:
               SME growth automation, food intelligence, AI companionship, agriculture,
-              logistics and enterprise-grade innovation across Lagos, Ogun State and Nigeria.
+              logistics, healthcare, education and enterprise-grade innovation across Lagos,
+              Ogun State and Nigeria.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -168,7 +184,7 @@ export default function Home() {
           <div className="grid gap-4 md:grid-cols-3">
             <VentureCard
               title="Runners Intel"
-              text="AI venture intelligence for Nigeria: SME growth agents, education AI, fintech intelligence, healthcare workflows, logistics optimisation and enterprise pilots."
+              text="AI venture intelligence for Nigeria: SME growth agents, education AI, healthcare workflows, fintech intelligence, logistics optimisation and enterprise pilots."
             />
             <VentureCard
               title="Runners Agro"
@@ -215,8 +231,8 @@ export default function Home() {
             <p className="eyebrow">Investor and partner room</p>
             <h2>Restricted access for serious capital, pilots and partnerships.</h2>
             <p>
-              Access the Runners Intel demo, open the Runners Agro demo,
-              and reach out about funding, sponsoring or partnering with Runners Errands.
+              Access the Runners Intel SME Growth demo, Runners Agro demo,
+              Healthcare + Education pilot demo, and partnership routes for Runners Errands.
             </p>
           </div>
 
@@ -251,7 +267,7 @@ export default function Home() {
                   Access approved by Runnerbot 2.
                 </p>
 
-                <div className="grid gap-4 md:grid-cols-2">
+                <div className="grid gap-4 md:grid-cols-3">
                   <LockedCard
                     title="Runners Intel Demo"
                     text="View the Runnerbot 2 SME Growth Agent and AI intelligence workflow for investor, partner and strategic demo discussions."
@@ -264,6 +280,13 @@ export default function Home() {
                     text="View the Runners Agro demo: the agriculture innovation layer for Ogun State and Nigeria, built around AI, data-led farming, market access and scalable agribusiness execution."
                     href={RUNNERS_AGRO_DEMO}
                     button="Open Runners Agro Demo"
+                  />
+
+                  <LockedCard
+                    title="Healthcare + Education Pilot Demo"
+                    text="View the demo-grade Runners Intel pilot for healthcare triage and education support. Built to support 90-day pilots with clinics, schools, ministries, universities and institutional partners."
+                    href={RUNNERS_HEALTH_EDU_DEMO}
+                    button="Open Health + Education Demo"
                   />
                 </div>
 
@@ -297,7 +320,7 @@ export default function Home() {
             <h2>Ask the Runners Futurum AI assistant.</h2>
             <p>
               Ask about Runners Futurum, Bites AI, Padi AI, Runners Agro,
-              Runners Intel, Runners Errands, investment or partnerships.
+              Runners Intel, Runners Errands, Healthcare, Education, investment or partnerships.
             </p>
           </div>
 
@@ -324,7 +347,7 @@ export default function Home() {
                 onKeyDown={(event) => {
                   if (event.key === "Enter") sendMessage();
                 }}
-                placeholder="Ask about Bites AI, Padi AI, investment, Agro, Errands or Runnerbot 2..."
+                placeholder="Ask about Bites AI, Padi AI, investment, Agro, Errands, Healthcare, Education or Runnerbot 2..."
                 className="flex-1 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none ring-blue-900/10 focus:ring-4"
               />
 
