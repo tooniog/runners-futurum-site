@@ -18,6 +18,9 @@ const RUNNERS_AGRO_DEMO =
 const RUNNERS_HEALTH_EDU_DEMO =
   "https://runners-intel-health-education-demo-beqhkm5oaeij68kszyewwl.streamlit.app/";
 
+const RUNNERS_ERRANDS_DEMO =
+  "https://runners-errands-demo.vercel.app/";
+
 function runnerbotReply(input) {
   const text = input.toLowerCase();
 
@@ -29,8 +32,8 @@ function runnerbotReply(input) {
     return "Padi AI is a locally-aware AI companion concept built for practical conversation, guidance, support, and everyday usefulness for Nigerian users.";
   }
 
-  if (text.includes("invest") || text.includes("fund") || text.includes("partner")) {
-    return "Runners Futurum is open to strategic investment, institutional pilots, funding, sponsorship, and partnerships across Runners Intel, Runners Agro, Runners Errands, Bites AI, Padi AI, Runnerbot 2 SME Growth Agent, and the Healthcare + Education AI pilots. Serious partners can use the investor room or contact runnersfuturum@gmail.com.";
+  if (text.includes("errands") || text.includes("delivery") || text.includes("logistics") || text.includes("lagos")) {
+    return "Runners Errands is the Lagos errands and delivery platform: food, groceries, pharmacy, parcels, premium produce and business runs. The live investor-ready demo is available inside the investor room.";
   }
 
   if (
@@ -49,12 +52,12 @@ function runnerbotReply(input) {
     return "Runners Agro is the agriculture innovation arm focused on Ogun State and Nigeria: sustainable farming, AI-enabled operations, data-led production, market access, and long-term food infrastructure. The Runners Agro demo is available in the investor room.";
   }
 
-  if (text.includes("errands") || text.includes("delivery") || text.includes("logistics") || text.includes("lagos")) {
-    return "Runners Errands is the planned Lagos convenience and logistics platform: errands, delivery, dispatch, household support, SME fulfilment, and partner-led urban operations. It is open to funding, sponsorship, and operational partnerships.";
-  }
-
   if (text.includes("runnerbot") || text.includes("intel") || text.includes("sme")) {
     return "Runnerbot 2 is the Runners Intel AI command layer. Venture 1 is the SME Growth Agent: a WhatsApp-first copilot for leads, follow-ups, invoicing, payments, delivery, and customer memory. The live demo is inside the investor room.";
+  }
+
+  if (text.includes("invest") || text.includes("fund") || text.includes("partner")) {
+    return "Runners Futurum is open to strategic investment, institutional pilots, funding, sponsorship and partnerships across Runners Intel, Runners Agro, Runners Errands, Bites AI, Padi AI, Runnerbot 2 SME Growth Agent and Healthcare + Education AI pilots. Serious partners can use the investor room or contact runnersfuturum@gmail.com.";
   }
 
   return "Runners Futurum is building practical AI and innovation infrastructure for Nigeria, starting with Runners Intel, Runners Agro, Runners Errands, Bites AI, Padi AI, Runnerbot 2 SME Growth Agent, and Healthcare + Education AI pilots. Ask me about investment, partnerships, Bites AI, Padi AI, Agro, Errands, Healthcare, Education, or Runnerbot 2.";
@@ -192,7 +195,7 @@ export default function Home() {
             />
             <VentureCard
               title="Runners Errands"
-              text="A future logistics and convenience platform for Lagos: errands, delivery, dispatch, household support, SME fulfilment and partner-led execution."
+              text="A Lagos errands, delivery and convenience platform for food, groceries, pharmacy, parcels, premium produce, SME fulfilment and partner-led urban operations."
             />
           </div>
         </section>
@@ -232,7 +235,7 @@ export default function Home() {
             <h2>Restricted access for serious capital, pilots and partnerships.</h2>
             <p>
               Access the Runners Intel SME Growth demo, Runners Agro demo,
-              Healthcare + Education pilot demo, and partnership routes for Runners Errands.
+              Healthcare + Education pilot demo, Runners Errands demo, and partnership routes.
             </p>
           </div>
 
@@ -267,7 +270,7 @@ export default function Home() {
                   Access approved by Runnerbot 2.
                 </p>
 
-                <div className="grid gap-4 md:grid-cols-3">
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                   <LockedCard
                     title="Runners Intel Demo"
                     text="View the Runnerbot 2 SME Growth Agent and AI intelligence workflow for investor, partner and strategic demo discussions."
@@ -288,16 +291,23 @@ export default function Home() {
                     href={RUNNERS_HEALTH_EDU_DEMO}
                     button="Open Health + Education Demo"
                   />
+
+                  <LockedCard
+                    title="Runners Errands Demo"
+                    text="View the investor-ready Runners Errands demo: booking, tracking, waitlist, Runnerbot 2 concierge, admin dashboard, rider dashboard, founding partner produce/e-bike advantage and investor mode."
+                    href={RUNNERS_ERRANDS_DEMO}
+                    button="Open Runners Errands Demo"
+                  />
                 </div>
 
                 <div className="mt-4 rounded-3xl bg-slate-950 p-5 text-white">
                   <h3 className="text-xl font-black">
-                    Partner with or fund Runners Errands
+                    Partner with or fund Runners Futurum
                   </h3>
 
                   <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-300">
-                    Reach out to discuss Lagos logistics, errand operations,
-                    sponsorship, funding or strategic partnerships.
+                    Reach out to discuss Lagos logistics, agriculture innovation,
+                    AI pilots, institutional partnerships, sponsorship, funding or strategic support.
                   </p>
 
                   <div className="mt-4 flex flex-wrap gap-3">
