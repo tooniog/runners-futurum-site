@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-const BITES_AI = "https://bitesai-production.up.railway.app/";
-const PADI_AI = "https://padiai-v2-production.up.railway.app/?v=8";
+const BITES_AI = "https://bites-ai.vercel.app/";
+const PADI_AI = "https://padiai.vercel.app/";
 const INSTAGRAM = "https://instagram.com/runnersfuturum";
 const EMAIL = "runnersfuturum@gmail.com";
 const PHONE = "+2348180702081";
