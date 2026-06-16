@@ -16,7 +16,7 @@ const RUNNERS_AGRO_DEMO =
   "https://runnerbot1-demo-8ugjjko9edsvk6wjat9jgr.streamlit.app/";
 
 const RUNNERS_HEALTH_EDU_DEMO =
-  "https://runners-intel-health-education-demo-beqhkm5oaeij68kszyewwl.streamlit.app/";
+  "https://runners-intel-institutional-pilot-p.vercel.app/";
 
 const RUNNERS_ERRANDS_DEMO =
   "https://runners-errands-demo.vercel.app/";
@@ -45,7 +45,7 @@ function runnerbotReply(input) {
     text.includes("waec") ||
     text.includes("jamb")
   ) {
-    return "The Healthcare + Education demo is a Runners Intel pilot package. Healthcare AI supports symptom triage, urgency routing, case logging and admin intelligence. Education AI supports WAEC/JAMB explanations, quizzes, answer marking, next lessons and teacher dashboards. The demo is available in the investor room.";
+    return "The Runners Education Demo is a Runners Intel pilot package for Nigerian schools, universities, training centres and education charities. It shows how Runnerbot Education OS can support student enquiries, school administration, teacher productivity, study guidance, attendance, reporting and AI readiness — with Padi AI as the learner-facing study companion.";
   }
 
   if (text.includes("agro") || text.includes("farm") || text.includes("agriculture") || text.includes("ogun")) {
@@ -235,7 +235,7 @@ export default function Home() {
             <h2>Restricted access for serious capital, pilots and partnerships.</h2>
             <p>
               Access the Runners Intel SME Growth demo, Runners Agro demo,
-              Healthcare + Education pilot demo, Runners Errands demo, and partnership routes.
+              Runners Education Demo, Runners Errands demo, and partnership routes.
             </p>
           </div>
 
@@ -272,10 +272,10 @@ export default function Home() {
 
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                   <LockedCard
-                    title="Runners Intel Demo"
+                    title="Runners Education Demo"
                     text="View the Runnerbot 2 SME Growth Agent and AI intelligence workflow for investor, partner and strategic demo discussions."
                     href={RUNNERS_INTEL_DEMO}
-                    button="Open Runners Intel Demo"
+                    button="Open Runners Education Demo"
                   />
 
                   <LockedCard
@@ -286,10 +286,10 @@ export default function Home() {
                   />
 
                   <LockedCard
-                    title="Healthcare + Education Pilot Demo"
-                    text="View the demo-grade Runners Intel pilot for healthcare triage and education support. Built to support 90-day pilots with clinics, schools, ministries, universities and institutional partners."
+                    title="Runners Education Demo"
+                    text="View the Runners Intel Education Demo for student support, school administration, teacher productivity, study guidance, AI literacy and Padi AI learner support. Built to support controlled 30–60 day pilots with schools, universities, training centres and education charities."
                     href={RUNNERS_HEALTH_EDU_DEMO}
-                    button="Open Health + Education Demo"
+                    button="Open Runners Education Demo"
                   />
 
                   <LockedCard
