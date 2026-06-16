@@ -272,10 +272,10 @@ export default function Home() {
 
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                   <LockedCard
-                    title="Runners Education Demo"
+                    title="Runners Intel Demo"
                     text="View the Runnerbot 2 SME Growth Agent and AI intelligence workflow for investor, partner and strategic demo discussions."
                     href={RUNNERS_INTEL_DEMO}
-                    button="Open Runners Education Demo"
+                    button="Open Runners Intel Demo"
                   />
 
                   <LockedCard
