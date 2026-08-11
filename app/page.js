@@ -1,449 +1,783 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 const BITES_AI = "https://bites-ai.vercel.app/";
 const PADI_AI = "https://padiai.vercel.app/";
-const INSTAGRAM = "https://instagram.com/runnersfuturum";
+const RUNNERS_AGRO = "https://runners-agro.vercel.app/";
+const RUNNERS_ERRANDS = "https://runners-errands-app-demo.vercel.app/";
+
+const BOI_DEMO =
+  "https://runnersfuturum-runnerbot2-boi-demo.vercel.app/";
+
+const GREENSPRINGS_DEMO =
+  "https://runnersfuturum-runnerbot2-greenspri.vercel.app/";
+
+const ST_SAVIOURS_DEMO =
+  "https://runnersfuturum-runnerbot2-stsaviour.vercel.app/";
+
 const EMAIL = "runnersfuturum@gmail.com";
-const PHONE = "+2348180702081";
-const INVESTOR_PASSWORD = "RUNNERS2026";
+const PARTNER_PASSWORD = "RUNNERS2026";
 
-const RUNNERS_INTEL_DEMO =
-  "https://cakehunter-xtupwyhxkmkqzmgwbpru3l.streamlit.app";
-
-const RUNNERS_AGRO_DEMO =
-  "https://runnerbot1-demo-8ugjjko9edsvk6wjat9jgr.streamlit.app/";
-
-const RUNNERS_HEALTH_EDU_DEMO =
-  "https://runners-intel-institutional-pilot-p.vercel.app/";
-
-const RUNNERS_ERRANDS_DEMO =
-  "https://runners-errands-demo.vercel.app/";
-
-function runnerbotReply(input) {
-  const text = input.toLowerCase();
-
-  if (text.includes("bites") || text.includes("food") || text.includes("restaurant")) {
-    return "Bites AI is Runners Futurum’s food-intelligence product. It is designed to help users and food businesses make smarter food decisions, discover options faster, and create a stronger AI-powered food experience.";
-  }
-
-  if (text.includes("padi") || text.includes("friend") || text.includes("companion")) {
-    return "Padi AI is a locally-aware AI companion concept built for practical conversation, guidance, support, and everyday usefulness for Nigerian users.";
-  }
-
-  if (text.includes("errands") || text.includes("delivery") || text.includes("logistics") || text.includes("lagos")) {
-    return "Runners Errands is the Lagos errands and delivery platform: food, groceries, pharmacy, parcels, premium produce and business runs. The live investor-ready demo is available inside the investor room.";
-  }
-
-  if (
-    text.includes("health") ||
-    text.includes("clinic") ||
-    text.includes("hospital") ||
-    text.includes("education") ||
-    text.includes("school") ||
-    text.includes("waec") ||
-    text.includes("jamb")
-  ) {
-    return "The Runners Education Demo is a Runners Intel pilot package for Nigerian schools, universities, training centres and education charities. It shows how Runnerbot Education OS can support student enquiries, school administration, teacher productivity, study guidance, attendance, reporting and AI readiness — with Padi AI as the learner-facing study companion.";
-  }
-
-  if (text.includes("agro") || text.includes("farm") || text.includes("agriculture") || text.includes("ogun")) {
-    return "Runners Agro is the agriculture innovation arm focused on Ogun State and Nigeria: sustainable farming, AI-enabled operations, data-led production, market access, and long-term food infrastructure. The Runners Agro demo is available in the investor room.";
-  }
-
-  if (text.includes("runnerbot") || text.includes("intel") || text.includes("sme")) {
-    return "Runnerbot 2 is the Runners Intel AI command layer. Venture 1 is the SME Growth Agent: a WhatsApp-first copilot for leads, follow-ups, invoicing, payments, delivery, and customer memory. The live demo is inside the investor room.";
-  }
-
-  if (text.includes("invest") || text.includes("fund") || text.includes("partner")) {
-    return "Runners Futurum is open to strategic investment, institutional pilots, funding, sponsorship and partnerships across Runners Intel, Runners Agro, Runners Errands, Bites AI, Padi AI, Runnerbot 2 SME Growth Agent and Healthcare + Education AI pilots. Serious partners can use the investor room or contact runnersfuturum@gmail.com.";
-  }
-
-  return "Runners Futurum is building practical AI and innovation infrastructure for Nigeria, starting with Runners Intel, Runners Agro, Runners Errands, Bites AI, Padi AI, Runnerbot 2 SME Growth Agent, and Healthcare + Education AI pilots. Ask me about investment, partnerships, Bites AI, Padi AI, Agro, Errands, Healthcare, Education, or Runnerbot 2.";
-}
+const demoCards = [
+  {
+    number: "01",
+    type: "Enterprise Intelligence",
+    name: "BOI Enterprise Platform",
+    description:
+      "A tailored demonstration of how Runnerbot 2 can support entrepreneur guidance, enterprise readiness, workflow support and institutional intelligence.",
+    href: BOI_DEMO,
+  },
+  {
+    number: "02",
+    type: "Education OS",
+    name: "Greensprings Connect",
+    description:
+      "A tailored Education OS demonstration spanning students, teachers, parents, school operations and leadership intelligence.",
+    href: GREENSPRINGS_DEMO,
+  },
+  {
+    number: "03",
+    type: "Education OS",
+    name: "St Saviour’s Connect",
+    description:
+      "A tailored primary-school AI operating environment focused on teacher support, parent experience, leadership intelligence and safeguarding-aware workflows.",
+    href: ST_SAVIOURS_DEMO,
+  },
+  {
+    number: "04",
+    type: "AI + Real-World Services",
+    name: "Runners Errands",
+    description:
+      "An AI-powered convenience and fulfilment platform designed to turn natural-language requests into trusted real-world execution.",
+    href: RUNNERS_ERRANDS,
+  },
+];
 
 export default function Home() {
+  const [roomOpen, setRoomOpen] = useState(false);
   const [password, setPassword] = useState("");
-  const [chatInput, setChatInput] = useState("");
-  const [messages, setMessages] = useState([
-    {
-      role: "bot",
-      text: "Welcome. I’m Runnerbot 2 for Runners Futurum. Ask me about the company, products, demos, investment, or partnerships.",
-    },
-  ]);
+  const [passwordError, setPasswordError] = useState(false);
 
-  const investorUnlocked = password === INVESTOR_PASSWORD;
+  function unlockRoom(e) {
+    e.preventDefault();
 
-  function sendMessage() {
-    if (!chatInput.trim()) return;
+    if (password.trim().toUpperCase() === PARTNER_PASSWORD) {
+      setRoomOpen(true);
+      setPasswordError(false);
+      setPassword("");
+      return;
+    }
 
-    const userText = chatInput.trim();
-    const botText = runnerbotReply(userText);
-
-    setMessages((prev) => [
-      ...prev,
-      { role: "user", text: userText },
-      { role: "bot", text: botText },
-    ]);
-
-    setChatInput("");
+    setPasswordError(true);
   }
 
   return (
-    <main className="min-h-screen bg-[#f7fafc] text-slate-950">
-      <section className="mx-auto max-w-7xl px-5 py-6 md:px-8 md:py-10">
-        <header className="mb-8 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-              <img
+    <main>
+      {/* ================= NAV ================= */}
+      <header className="site-nav">
+        <div className="nav-inner">
+          <a href="#top" className="brand-lockup" aria-label="Runners Futurum">
+            <div className="brand-mark">
+              <Image
                 src="/logo.jpg"
-                alt="Runners Futurum logo"
-                className="z-10 h-full w-full object-contain p-1"
-                onError={(event) => {
-                  event.currentTarget.style.display = "none";
-                }}
+                alt="Runners Futurum"
+                width={42}
+                height={42}
+                priority
               />
-              <span className="absolute text-xl font-black text-blue-900">R</span>
             </div>
 
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.28em] text-blue-900">
-                Lagos • Ogun • Nigeria
-              </p>
-              <h1 className="text-xl font-black tracking-tight md:text-2xl">
-                Runners Futurum
-              </h1>
+              <div className="brand-name">Runners Futurum</div>
+              <div className="brand-tagline">
+                Intelligence. Innovation. Impact.
+              </div>
+            </div>
+          </a>
+
+          <nav className="nav-links" aria-label="Primary navigation">
+            <a href="#company">Company</a>
+            <a href="#portfolio">Platforms</a>
+            <a href="#intel">Runners Intel</a>
+            <a href="#products">Products</a>
+            <a href="#partner-room">Partner Room</a>
+          </nav>
+
+          <a href={`mailto:${EMAIL}`} className="nav-cta">
+            Start a conversation
+          </a>
+        </div>
+      </header>
+
+      {/* ================= HERO ================= */}
+      <section id="top" className="hero">
+        <div className="contour-texture" />
+
+        <div className="hero-glow hero-glow-one" />
+        <div className="hero-glow hero-glow-two" />
+
+        <div className="page-shell hero-inner">
+          <div className="hero-copy">
+            <div className="status-pill">
+              <span className="status-dot-wrap">
+                <span className="status-dot-pulse" />
+                <span className="status-dot" />
+              </span>
+
+              <span>
+                Building practical AI infrastructure for Nigeria
+              </span>
+            </div>
+
+            <h1>
+              Intelligence for the institutions and industries{" "}
+              <em>shaping Nigeria.</em>
+            </h1>
+
+            <p className="hero-description">
+              Runners Futurum builds practical AI platforms that strengthen
+              institutions, modernise industries and turn Nigerian
+              opportunities into scalable technology businesses.
+            </p>
+
+            <div className="hero-actions">
+              <a href="#portfolio" className="button button-green">
+                Explore the platforms <span>→</span>
+              </a>
+
+              <a
+                href="#partner-room"
+                className="button button-ghost"
+              >
+                Investor &amp; Partner Room
+              </a>
+            </div>
+
+            <div className="hero-stats">
+              <div>
+                <strong>03</strong>
+                <span>core technology platforms</span>
+              </div>
+
+              <div>
+                <strong>AI</strong>
+                <span>built into the operating layer</span>
+              </div>
+
+              <div>
+                <strong>NG</strong>
+                <span>Nigeria first, built to scale</span>
+              </div>
             </div>
           </div>
 
-          <nav className="hidden items-center gap-3 md:flex">
-            <a href="#products" className="nav-link">Products</a>
-            <a href="#investors" className="nav-link">Investors</a>
-            <a href="#runnerbot" className="nav-link">Runnerbot 2</a>
-            <a href="#contact" className="nav-link">Contact</a>
-          </nav>
-        </header>
+          <div className="hero-system">
+            <div className="system-window">
+              <div className="system-window-top">
+                <div>
+                  <span className="eyebrow light">Runners Futurum</span>
+                  <h2>Intelligence Infrastructure</h2>
+                </div>
 
-        <section className="hero-card">
-          <div className="max-w-4xl">
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.3em] text-lime-300">
-              AI venture studio • Practical innovation • Nigerian execution
+                <span className="system-live">
+                  <span />
+                  ACTIVE
+                </span>
+              </div>
+
+              <div className="system-core">
+                <div className="core-ring core-ring-outer" />
+                <div className="core-ring core-ring-inner" />
+
+                <div className="core-centre">
+                  <Image
+                    src="/logo.jpg"
+                    alt=""
+                    width={68}
+                    height={68}
+                  />
+                </div>
+
+                <div className="system-node node-one">
+                  <span>01</span>
+                  <strong>Runners Intel</strong>
+                  <small>Institutional Intelligence</small>
+                </div>
+
+                <div className="system-node node-two">
+                  <span>02</span>
+                  <strong>Runners Agro</strong>
+                  <small>Agricultural Intelligence</small>
+                </div>
+
+                <div className="system-node node-three">
+                  <span>03</span>
+                  <strong>Runners Errands</strong>
+                  <small>AI + Real-World Execution</small>
+                </div>
+              </div>
+
+              <div className="system-footer">
+                <span>Human oversight</span>
+                <span>Operational intelligence</span>
+                <span>Real-world execution</span>
+              </div>
+            </div>
+
+            <p className="system-caption">
+              One company. Multiple intelligence layers. One Nigerian
+              technology ecosystem.
             </p>
+          </div>
+        </div>
+      </section>
 
-            <h2 className="max-w-5xl text-5xl font-black leading-[0.98] tracking-tight text-white md:text-7xl">
-              Building Nigeria’s future with AI, agriculture, logistics and intelligence.
+      {/* ================= COMPANY ================= */}
+      <section id="company" className="section paper-section">
+        <div className="page-shell">
+          <div className="section-heading">
+            <span className="eyebrow terracotta">
+              Why Runners Futurum exists
+            </span>
+
+            <h2>
+              Nigeria does not need more technology theatre.
+              <br />
+              It needs <em>technology that works.</em>
             </h2>
 
-            <p className="mt-6 max-w-3xl text-base leading-8 text-blue-100 md:text-lg">
-              Runners Futurum connects practical Nigerian problems with intelligent products:
-              SME growth automation, food intelligence, AI companionship, agriculture,
-              logistics, healthcare, education and enterprise-grade innovation across Lagos,
-              Ogun State and Nigeria.
+            <p>
+              We build around real institutions, real industries and real
+              operating problems — combining artificial intelligence with
+              human judgement, local context and disciplined execution.
+            </p>
+          </div>
+
+          <div className="principle-grid">
+            <article>
+              <span>01</span>
+              <h3>Practical Intelligence</h3>
+              <p>
+                AI designed around measurable work, decisions and outcomes —
+                not technology for its own sake.
+              </p>
+            </article>
+
+            <article>
+              <span>02</span>
+              <h3>Human-Centred AI</h3>
+              <p>
+                Systems that strengthen people and institutions while keeping
+                human oversight where judgement matters.
+              </p>
+            </article>
+
+            <article>
+              <span>03</span>
+              <h3>Nigeria First</h3>
+              <p>
+                Products designed around Nigerian realities, opportunities,
+                constraints and operating environments.
+              </p>
+            </article>
+
+            <article>
+              <span>04</span>
+              <h3>Built to Scale</h3>
+              <p>
+                Start with concrete problems. Prove utility. Build the
+                infrastructure capable of growing far beyond the first use
+                case.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= PORTFOLIO ================= */}
+      <section id="portfolio" className="section surface-section">
+        <div className="page-shell">
+          <div className="section-heading">
+            <span className="eyebrow navy">The company</span>
+
+            <h2>
+              Three platforms.
+              <br />
+              <em>One connected technology thesis.</em>
+            </h2>
+          </div>
+
+          <div className="venture-grid">
+            <article className="venture-card">
+              <div className="venture-top">
+                <span className="venture-number">01</span>
+                <span className="mini-status">Institutional AI</span>
+              </div>
+
+              <h3>Runners Intel</h3>
+
+              <p>
+                Institutional Intelligence Platforms that combine AI guidance,
+                knowledge, workflow support, human oversight and operational
+                intelligence.
+              </p>
+
+              <div className="venture-tags">
+                <span>Enterprise</span>
+                <span>Education</span>
+                <span>Operations</span>
+                <span>Decision Support</span>
+              </div>
+
+              <a href="#intel">
+                Explore Runners Intel <span>→</span>
+              </a>
+            </article>
+
+            <article className="venture-card">
+              <div className="venture-top">
+                <span className="venture-number">02</span>
+                <span className="mini-status">Agriculture</span>
+              </div>
+
+              <h3>Runners Agro</h3>
+
+              <p>
+                AI-coordinated agricultural intelligence and infrastructure
+                designed around farmers, land, data, markets and the wider
+                Nigerian agricultural economy.
+              </p>
+
+              <div className="venture-tags">
+                <span>Runnerbot 1</span>
+                <span>RAIP</span>
+                <span>RAMAS</span>
+                <span>Land</span>
+              </div>
+
+              <a
+                href={RUNNERS_AGRO}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open Runners Agro <span>↗</span>
+              </a>
+            </article>
+
+            <article className="venture-card">
+              <div className="venture-top">
+                <span className="venture-number">03</span>
+                <span className="mini-status">Consumer Infrastructure</span>
+              </div>
+
+              <h3>Runners Errands</h3>
+
+              <p>
+                An AI-powered convenience platform connecting natural-language
+                requests with trusted real-world fulfilment and delivery.
+              </p>
+
+              <div className="venture-tags">
+                <span>AI Operations</span>
+                <span>Commerce</span>
+                <span>Fulfilment</span>
+                <span>Delivery</span>
+              </div>
+
+              <a
+                href={RUNNERS_ERRANDS}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open Runners Errands <span>↗</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= RUNNERS INTEL ================= */}
+      <section id="intel" className="intel-section">
+        <div className="contour-texture" />
+
+        <div className="page-shell intel-shell">
+          <div className="intel-copy">
+            <span className="eyebrow green">
+              Runners Intel
+            </span>
+
+            <h2>
+              AI should strengthen institutions,
+              <br />
+              <em>not replace them.</em>
+            </h2>
+
+            <p>
+              Runnerbot 2 is the intelligence layer at the centre of Runners
+              Intel — built to help organisations turn knowledge into guidance,
+              guidance into workflow, and workflow into better institutional
+              intelligence.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href={BITES_AI} target="_blank" rel="noreferrer" className="btn btn-lime">
-                Open Bites AI
-              </a>
-              <a href={PADI_AI} target="_blank" rel="noreferrer" className="btn btn-white">
-                Open Padi AI
-              </a>
-              <a href="#investors" className="btn btn-outline">
-                Investor room
-              </a>
+            <div className="intel-principle">
+              <span>Operating principle</span>
+              <strong>
+                Human judgement remains in control where decisions matter.
+              </strong>
             </div>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {["AI-first", "Nigeria-localised", "Lagos + Ogun", "Investor-ready", "Built for scale"].map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-bold text-white"
-              >
-                {item}
+          <div className="intel-flow">
+            {[
+              ["01", "Institution", "Real organisational context"],
+              ["02", "Runnerbot 2", "AI guidance and assistance"],
+              ["03", "Knowledge", "Structured institutional intelligence"],
+              ["04", "Workflow", "Action and operational support"],
+              ["05", "Human Oversight", "Judgement and accountability"],
+              ["06", "Intelligence", "Learning and decision support"],
+            ].map(([number, title, description]) => (
+              <div className="flow-row" key={number}>
+                <span className="flow-number">{number}</span>
+
+                <div>
+                  <strong>{title}</strong>
+                  <small>{description}</small>
+                </div>
               </div>
             ))}
           </div>
-        </section>
+        </div>
 
-        <section className="mt-8 grid gap-4 md:grid-cols-4">
-          <Metric label="Primary market" value="Nigeria" />
-          <Metric label="Launch focus" value="Lagos + Ogun" />
-          <Metric label="Core engine" value="AI agents" />
-          <Metric label="Long-term vision" value="Infrastructure" />
-        </section>
-
-        <section className="section" id="mission">
-          <div className="section-heading">
-            <p className="eyebrow">Mission</p>
-            <h2>One company. Multiple AI-native Nigerian opportunities.</h2>
-            <p>
-              Runners Futurum is designed as a future-facing operating company:
-              product-first, investor-ready and focused on real-world Nigerian execution.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            <VentureCard
-              title="Runners Intel"
-              text="AI venture intelligence for Nigeria: SME growth agents, education AI, healthcare workflows, fintech intelligence, logistics optimisation and enterprise pilots."
-            />
-            <VentureCard
-              title="Runners Agro"
-              text="Agriculture innovation for Ogun State and Nigeria: data-led farming, farm operations, market access, sustainability and future food systems."
-            />
-            <VentureCard
-              title="Runners Errands"
-              text="A Lagos errands, delivery and convenience platform for food, groceries, pharmacy, parcels, premium produce, SME fulfilment and partner-led urban operations."
-            />
-          </div>
-        </section>
-
-        <section className="section" id="products">
-          <div className="section-heading">
-            <p className="eyebrow">Live products</p>
-            <h2>Bites AI and Padi AI are the first public signals.</h2>
-            <p>
-              These products show the Runners Futurum direction: useful AI interfaces,
-              Nigerian localisation and rapid venture deployment.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <ProductCard
-              title="Bites AI"
-              label="Food intelligence"
-              text="Food intelligence and customer-facing AI experience designed to make food discovery, ordering support and food-related decisions faster and smarter."
-              href={BITES_AI}
-              button="Launch Bites AI"
-              green
-            />
-            <ProductCard
-              title="Padi AI"
-              label="AI companion"
-              text="A locally-aware AI companion concept built around conversation, guidance, practical support and human-centred usefulness for Nigerian users."
-              href={PADI_AI}
-              button="Launch Padi AI"
-            />
-          </div>
-        </section>
-
-        <section className="section" id="investors">
-          <div className="section-heading">
-            <p className="eyebrow">Investor and partner room</p>
-            <h2>Restricted access for serious capital, pilots and partnerships.</h2>
-            <p>
-              Access the Runners Intel SME Growth demo, Runners Agro demo,
-              Runners Education Demo, Runners Errands demo, and partnership routes.
-            </p>
-          </div>
-
-          <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
-            <label className="text-sm font-bold text-slate-700">
-              Investor password
-            </label>
-
-            <input
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              type="password"
-              placeholder="Enter access password"
-              className="mt-2 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none ring-blue-900/10 focus:ring-4"
-            />
-
-            {!password && (
-              <p className="mt-3 text-sm text-slate-500">
-                For access, contact Runners Futurum by email or phone.
+        <div className="page-shell use-case-shell">
+          <div className="use-case-grid">
+            <article>
+              <span>Enterprise</span>
+              <h3>Enterprise Intelligence</h3>
+              <p>
+                Guidance, readiness, workflow support and structured
+                operational insight for institutions serving businesses and
+                entrepreneurs.
               </p>
-            )}
+            </article>
 
-            {password && !investorUnlocked && (
-              <p className="mt-3 text-sm font-bold text-red-600">
-                Access not approved. Contact Runners Futurum for investor access.
+            <article>
+              <span>Education</span>
+              <h3>Education OS</h3>
+              <p>
+                AI support for students, teachers, parents, school operations
+                and leadership — with safeguarding and human oversight built
+                into the operating model.
               </p>
-            )}
+            </article>
 
-            {investorUnlocked && (
-              <div className="mt-6">
-                <p className="mb-4 rounded-2xl bg-lime-50 px-4 py-3 text-sm font-bold text-lime-800">
-                  Access approved by Runnerbot 2.
-                </p>
+            <article>
+              <span>Operations</span>
+              <h3>Institutional Productivity</h3>
+              <p>
+                Knowledge assistance, workflow guidance, document support and
+                executive intelligence designed to reduce friction and improve
+                execution.
+              </p>
+            </article>
 
-                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                  <LockedCard
-                    title="Runners Intel Demo"
-                    text="View the Runnerbot 2 SME Growth Agent and AI intelligence workflow for investor, partner and strategic demo discussions."
-                    href={RUNNERS_INTEL_DEMO}
-                    button="Open Runners Intel Demo"
-                  />
-
-                  <LockedCard
-                    title="Runners Agro Demo"
-                    text="View the Runners Agro demo: the agriculture innovation layer for Ogun State and Nigeria, built around AI, data-led farming, market access and scalable agribusiness execution."
-                    href={RUNNERS_AGRO_DEMO}
-                    button="Open Runners Agro Demo"
-                  />
-
-                  <LockedCard
-                    title="Runners Education Demo"
-                    text="View the Runners Intel Education Demo for student support, school administration, teacher productivity, study guidance, AI literacy and Padi AI learner support. Built to support controlled 30–60 day pilots with schools, universities, training centres and education charities."
-                    href={RUNNERS_HEALTH_EDU_DEMO}
-                    button="Open Runners Education Demo"
-                  />
-
-                  <LockedCard
-                    title="Runners Errands Demo"
-                    text="View the investor-ready Runners Errands demo: booking, tracking, waitlist, Runnerbot 2 concierge, admin dashboard, rider dashboard, founding partner produce/e-bike advantage and investor mode."
-                    href={RUNNERS_ERRANDS_DEMO}
-                    button="Open Runners Errands Demo"
-                  />
-                </div>
-
-                <div className="mt-4 rounded-3xl bg-slate-950 p-5 text-white">
-                  <h3 className="text-xl font-black">
-                    Partner with or fund Runners Futurum
-                  </h3>
-
-                  <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-300">
-                    Reach out to discuss Lagos logistics, agriculture innovation,
-                    AI pilots, institutional partnerships, sponsorship, funding or strategic support.
-                  </p>
-
-                  <div className="mt-4 flex flex-wrap gap-3">
-                    <a className="btn btn-lime" href={`mailto:${EMAIL}`}>
-                      Email Runners Futurum
-                    </a>
-                    <a className="btn btn-outline" href={`tel:${PHONE}`}>
-                      Call / WhatsApp
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
+            <article>
+              <span>Property + Retail</span>
+              <h3>Physical-Space Intelligence</h3>
+              <p>
+                AI operating layers for complex physical environments,
+                connecting information, commerce, service workflows and
+                operational intelligence.
+              </p>
+            </article>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="section" id="runnerbot">
+      {/* ================= PRODUCTS ================= */}
+      <section id="products" className="section paper-section">
+        <div className="page-shell">
           <div className="section-heading">
-            <p className="eyebrow">Runnerbot 2</p>
-            <h2>Ask the Runners Futurum AI assistant.</h2>
-            <p>
-              Ask about Runners Futurum, Bites AI, Padi AI, Runners Agro,
-              Runners Intel, Runners Errands, Healthcare, Education, investment or partnerships.
-            </p>
-          </div>
+            <span className="eyebrow terracotta">
+              Products in market
+            </span>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm md:p-6">
-            <div className="mb-4 max-h-[420px] space-y-3 overflow-y-auto rounded-2xl bg-slate-50 p-4">
-              {messages.map((message, index) => (
-                <div
-                  key={index}
-                  className={
-                    message.role === "user"
-                      ? "ml-auto max-w-[86%] rounded-2xl bg-blue-950 px-4 py-3 text-white"
-                      : "mr-auto max-w-[86%] rounded-2xl bg-white px-4 py-3 text-slate-800 shadow-sm ring-1 ring-slate-200"
-                  }
-                >
-                  {message.text}
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col gap-3 md:flex-row">
-              <input
-                value={chatInput}
-                onChange={(event) => setChatInput(event.target.value)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter") sendMessage();
-                }}
-                placeholder="Ask about Bites AI, Padi AI, investment, Agro, Errands, Healthcare, Education or Runnerbot 2..."
-                className="flex-1 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none ring-blue-900/10 focus:ring-4"
-              />
-
-              <button onClick={sendMessage} className="btn btn-blue">
-                Ask Runnerbot 2
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section className="section" id="contact">
-          <div className="rounded-3xl bg-slate-950 p-6 text-white md:p-8">
-            <p className="eyebrow text-lime-300">Contact</p>
-            <h2 className="text-3xl font-black md:text-4xl">
-              Build, invest, pilot or partner with Runners Futurum.
+            <h2>
+              Intelligence also has to work
+              <br />
+              <em>for everyday people.</em>
             </h2>
 
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="btn btn-lime">
-                @runnersfuturum
+            <p>
+              Alongside our infrastructure platforms, we build focused
+              consumer AI products around high-frequency Nigerian needs.
+            </p>
+          </div>
+
+          <div className="consumer-grid">
+            <article className="consumer-card">
+              <div className="consumer-label">
+                <span className="consumer-dot" />
+                LIVE PRODUCT
+              </div>
+
+              <h3>Bites AI</h3>
+
+              <p className="consumer-subtitle">
+                AI food discovery and dining companion.
+              </p>
+
+              <p>
+                Helps users discover what and where to eat through a
+                conversational AI experience built around everyday food
+                decisions.
+              </p>
+
+              <a
+                href={BITES_AI}
+                target="_blank"
+                rel="noreferrer"
+                className="button button-dark"
+              >
+                Open Bites AI <span>↗</span>
               </a>
-              <a href={`mailto:${EMAIL}`} className="btn btn-white">
-                {EMAIL}
+            </article>
+
+            <article className="consumer-card">
+              <div className="consumer-label">
+                <span className="consumer-dot" />
+                LIVE PRODUCT
+              </div>
+
+              <h3>Padi AI</h3>
+
+              <p className="consumer-subtitle">
+                AI educational companion.
+              </p>
+
+              <p>
+                A learning-focused AI experience designed to make knowledge,
+                explanation and educational support more accessible and useful.
+              </p>
+
+              <a
+                href={PADI_AI}
+                target="_blank"
+                rel="noreferrer"
+                className="button button-dark"
+              >
+                Open Padi AI <span>↗</span>
               </a>
-              <a href={`tel:${PHONE}`} className="btn btn-outline">
-                {PHONE}
-              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= PARTNER ROOM ================= */}
+      <section id="partner-room" className="partner-section">
+        <div className="page-shell">
+          <div className="partner-header">
+            <div>
+              <span className="eyebrow green">
+                Investor &amp; Partner Room
+              </span>
+
+              <h2>
+                See what we are
+                <br />
+                <em>actually building.</em>
+              </h2>
+            </div>
+
+            <p>
+              A controlled demonstration environment for investors, strategic
+              partners and institutional stakeholders to explore selected
+              Runners Futurum platforms.
+            </p>
+          </div>
+
+          {!roomOpen ? (
+            <div className="room-lock">
+              <div className="lock-icon">
+                <span />
+              </div>
+
+              <div className="lock-copy">
+                <span className="eyebrow light">
+                  Controlled access
+                </span>
+
+                <h3>Enter the Partner Room</h3>
+
+                <p>
+                  Enter the access code provided by Runners Futurum.
+                </p>
+              </div>
+
+              <form onSubmit={unlockRoom} className="lock-form">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setPasswordError(false);
+                  }}
+                  placeholder="Access code"
+                  aria-label="Partner Room access code"
+                />
+
+                <button type="submit">
+                  Enter room <span>→</span>
+                </button>
+
+                {passwordError && (
+                  <span className="password-error">
+                    Access code not recognised.
+                  </span>
+                )}
+              </form>
+            </div>
+          ) : (
+            <>
+              <div className="room-open-bar">
+                <div>
+                  <span className="room-open-dot" />
+                  PARTNER ROOM UNLOCKED
+                </div>
+
+                <button onClick={() => setRoomOpen(false)}>
+                  Lock room
+                </button>
+              </div>
+
+              <div className="demo-grid">
+                {demoCards.map((demo) => (
+                  <article className="demo-card" key={demo.name}>
+                    <div className="demo-top">
+                      <span>{demo.number}</span>
+                      <small>{demo.type}</small>
+                    </div>
+
+                    <h3>{demo.name}</h3>
+
+                    <p>{demo.description}</p>
+
+                    <a
+                      href={demo.href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Open demonstration <span>↗</span>
+                    </a>
+                  </article>
+                ))}
+              </div>
+
+              <div className="partner-note">
+                <div>
+                  <span className="eyebrow green">
+                    Strategic collaboration
+                  </span>
+
+                  <h3>
+                    Building something important in Nigeria?
+                  </h3>
+                </div>
+
+                <p>
+                  Runners Futurum is open to conversations with institutions,
+                  investors and strategic partners around high-value AI
+                  infrastructure and technology deployment.
+                </p>
+
+                <a
+                  href={`mailto:${EMAIL}?subject=Runners%20Futurum%20Strategic%20Collaboration`}
+                  className="button button-green"
+                >
+                  Start a conversation <span>→</span>
+                </a>
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* ================= CLOSING ================= */}
+      <section className="closing-section">
+        <div className="page-shell closing-inner">
+          <span className="eyebrow green">
+            Runners Futurum
+          </span>
+
+          <h2>
+            Nigeria&apos;s next generation of
+            <br />
+            <em>intelligent systems starts here.</em>
+          </h2>
+
+          <p>
+            We are building the platforms, operating intelligence and
+            technology businesses required for a more productive,
+            technologically capable Nigerian future.
+          </p>
+
+          <div className="closing-actions">
+            <a
+              href={`mailto:${EMAIL}`}
+              className="button button-green"
+            >
+              Work with Runners Futurum <span>→</span>
+            </a>
+
+            <a href="#portfolio" className="button button-ghost">
+              Explore the platforms
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FOOTER ================= */}
+      <footer className="site-footer">
+        <div className="page-shell footer-inner">
+          <div className="footer-brand">
+            <Image
+              src="/logo.jpg"
+              alt="Runners Futurum"
+              width={36}
+              height={36}
+            />
+
+            <div>
+              <strong>Runners Futurum</strong>
+              <span>Intelligence. Innovation. Impact.</span>
             </div>
           </div>
-        </section>
-      </section>
+
+          <div className="footer-links">
+            <a href={RUNNERS_AGRO} target="_blank" rel="noreferrer">
+              Runners Agro
+            </a>
+
+            <a href={RUNNERS_ERRANDS} target="_blank" rel="noreferrer">
+              Runners Errands
+            </a>
+
+            <a href={BITES_AI} target="_blank" rel="noreferrer">
+              Bites AI
+            </a>
+
+            <a href={PADI_AI} target="_blank" rel="noreferrer">
+              Padi AI
+            </a>
+          </div>
+
+          <div className="footer-meta">
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            <span>© 2026 Runners Futurum</span>
+          </div>
+        </div>
+      </footer>
     </main>
-  );
-}
-
-function Metric({ label, value }) {
-  return (
-    <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-      <p className="text-sm font-bold text-slate-500">{label}</p>
-      <p className="mt-2 text-2xl font-black tracking-tight text-slate-950">
-        {value}
-      </p>
-    </div>
-  );
-}
-
-function VentureCard({ title, text }) {
-  return (
-    <div className="card">
-      <h3>{title}</h3>
-      <p>{text}</p>
-    </div>
-  );
-}
-
-function ProductCard({ title, label, text, href, button, green }) {
-  return (
-    <div className="card">
-      <p className="eyebrow">{label}</p>
-      <h3>{title}</h3>
-      <p>{text}</p>
-      <a
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className={green ? "btn btn-lime mt-4" : "btn btn-blue mt-4"}
-      >
-        {button}
-      </a>
-    </div>
-  );
-}
-
-function LockedCard({ title, text, href, button }) {
-  return (
-    <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-      <h3 className="text-xl font-black text-slate-950">{title}</h3>
-      <p className="mt-2 text-sm leading-7 text-slate-600">{text}</p>
-      <a
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="btn btn-blue mt-4"
-      >
-        {button}
-      </a>
-    </div>
   );
 }
