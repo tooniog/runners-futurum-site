@@ -369,14 +369,15 @@ export default function Home() {
             <article className="venture-card">
               <div className="venture-top">
                 <span className="venture-number">03</span>
-                <span className="mini-status">Consumer Infrastructure</span>
+                <span className="mini-status">AI + Real-World Services</span>
               </div>
 
               <h3>Runners Errands</h3>
 
               <p>
-                An AI-powered convenience platform connecting natural-language
-                requests with trusted real-world fulfilment and delivery.
+                An AI-powered convenience and fulfilment platform designed to
+                turn natural-language requests into trusted real-world
+                execution.
               </p>
 
               <div className="venture-tags">
@@ -386,12 +387,8 @@ export default function Home() {
                 <span>Delivery</span>
               </div>
 
-              <a
-                href={RUNNERS_ERRANDS}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open Runners Errands <span>↗</span>
+              <a href="#errands">
+                Explore Runners Errands <span>→</span>
               </a>
             </article>
           </div>
@@ -492,6 +489,131 @@ export default function Home() {
               </p>
             </article>
           </div>
+        </div>
+      </section>
+
+      {/* ================= RUNNERS ERRANDS ================= */}
+      <section id="errands" className="errands-section">
+        <div className="page-shell errands-shell">
+          <div className="errands-copy">
+            <span className="eyebrow terracotta">
+              Runners Errands
+            </span>
+
+            <h2>
+              From a request on your phone
+              <br />
+              to <em>real-world execution.</em>
+            </h2>
+
+            <p>
+              Runners Errands is an AI-powered convenience and fulfilment
+              platform being built around one simple objective: maximum
+              convenience with minimum friction.
+            </p>
+
+            <p>
+              Instead of forcing users through multiple apps, stores and
+              delivery processes, the platform is designed to let someone
+              describe what they need naturally and then coordinate the
+              operational journey required to get it done.
+            </p>
+
+            <div className="errands-access-note">
+              <span>Investor access</span>
+              <strong>
+                A working Stage 1 app demonstration is available to authorised
+                investors and strategic partners inside the Investor &amp;
+                Partner Room.
+              </strong>
+            </div>
+
+            <a href="#partner-room" className="errands-partner-link">
+              Access the Investor &amp; Partner Room <span>→</span>
+            </a>
+          </div>
+
+          <div className="errands-flow">
+            <div className="errands-flow-heading">
+              <span className="eyebrow navy">Operating model</span>
+              <h3>AI coordinates. Humans execute.</h3>
+            </div>
+
+            {[
+              [
+                "01",
+                "Request",
+                "The user describes what they need in natural language.",
+              ],
+              [
+                "02",
+                "Understand",
+                "The AI operations layer structures the request and determines the next actions.",
+              ],
+              [
+                "03",
+                "Coordinate",
+                "Stores, fulfilment requirements, timing and delivery are organised around the request.",
+              ],
+              [
+                "04",
+                "Execute",
+                "Trusted human runners complete the real-world task.",
+              ],
+              [
+                "05",
+                "Improve",
+                "With permission, the platform can learn useful preferences and make repeat errands easier.",
+              ],
+            ].map(([number, title, description]) => (
+              <div className="errands-flow-row" key={number}>
+                <span>{number}</span>
+
+                <div>
+                  <strong>{title}</strong>
+                  <small>{description}</small>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="page-shell errands-capabilities">
+          <article>
+            <span>01</span>
+            <h3>Natural-Language Errands</h3>
+            <p>
+              Ask for what you need in the way you would naturally explain it
+              to another person.
+            </p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>Trusted Fulfilment</h3>
+            <p>
+              Technology coordinates the process while verified human runners
+              handle physical execution.
+            </p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Recurring Convenience</h3>
+            <p>
+              The platform is designed to support scheduled and repeat errands
+              for high-frequency everyday needs.
+            </p>
+          </article>
+
+          <article>
+            <span>04</span>
+            <h3>Transparent Execution</h3>
+            <p>
+              Clear status, communication and accountability are designed into
+              the operating experience.
+            </p>
+          </article>
         </div>
       </section>
 
@@ -759,7 +881,7 @@ export default function Home() {
               Runners Agro
             </a>
 
-            <a href={RUNNERS_ERRANDS} target="_blank" rel="noreferrer">
+            <a href="#errands">
               Runners Errands
             </a>
 

@@ -1307,6 +1307,248 @@ textarea:focus-visible,
 }
 
 /* =========================================================
+   RUNNERS ERRANDS
+========================================================= */
+
+.errands-section {
+  padding: 110px 0 0;
+  background: var(--surface);
+  color: var(--ink);
+  border-top: 1px solid var(--line);
+}
+
+.errands-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  gap: 95px;
+  align-items: start;
+}
+
+.errands-copy h2 {
+  max-width: 690px;
+  margin: 16px 0 0;
+
+  font-family: var(--font-fraunces);
+  font-size: clamp(37px, 4vw, 51px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+
+  color: var(--navy-deep);
+}
+
+.errands-copy h2 em {
+  font-weight: 500;
+  font-style: italic;
+  color: var(--navy);
+}
+
+.errands-copy > p {
+  max-width: 610px;
+  margin: 23px 0 0;
+
+  font-size: 14px;
+  line-height: 1.78;
+
+  color: var(--muted);
+}
+
+.errands-access-note {
+  max-width: 610px;
+
+  margin-top: 34px;
+  padding: 21px 22px;
+
+  border-left: 2px solid var(--terracotta);
+  background: var(--paper);
+}
+
+.errands-access-note span {
+  display: block;
+  margin-bottom: 8px;
+
+  font-family: var(--font-plex-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  color: var(--terracotta);
+}
+
+.errands-access-note strong {
+  display: block;
+
+  font-family: var(--font-fraunces);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+
+  color: var(--navy-deep);
+}
+
+.errands-partner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 25px;
+
+  font-size: 12.5px;
+  font-weight: 600;
+
+  color: var(--navy-deep);
+}
+
+.errands-partner-link span {
+  transition: transform 160ms ease;
+}
+
+.errands-partner-link:hover span {
+  transform: translateX(3px);
+}
+
+.errands-flow {
+  border-top: 1px solid var(--line);
+}
+
+.errands-flow-heading {
+  padding: 0 0 23px;
+}
+
+.errands-flow-heading h3 {
+  margin: 7px 0 0;
+
+  font-family: var(--font-fraunces);
+  font-size: 23px;
+  font-weight: 600;
+
+  color: var(--navy-deep);
+}
+
+.errands-flow-row {
+  min-height: 79px;
+
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  align-items: center;
+
+  border-top: 1px solid var(--line);
+}
+
+.errands-flow-row > span {
+  font-family: var(--font-plex-mono);
+  font-size: 9px;
+
+  color: var(--terracotta);
+}
+
+.errands-flow-row div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.errands-flow-row strong {
+  font-family: var(--font-fraunces);
+  font-size: 17px;
+  font-weight: 600;
+
+  color: var(--navy-deep);
+}
+
+.errands-flow-row small {
+  max-width: 420px;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  color: var(--muted);
+}
+
+.errands-capabilities {
+  margin-top: 88px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.errands-capabilities article {
+  min-height: 245px;
+
+  padding: 27px;
+
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  background: var(--paper);
+}
+
+.errands-capabilities article > span {
+  display: block;
+
+  font-family: var(--font-plex-mono);
+  font-size: 8.5px;
+
+  color: var(--terracotta);
+}
+
+.errands-capabilities h3 {
+  margin: 38px 0 0;
+
+  font-family: var(--font-fraunces);
+  font-size: 19px;
+  font-weight: 600;
+
+  color: var(--navy-deep);
+}
+
+.errands-capabilities p {
+  margin: 13px 0 0;
+
+  font-size: 12px;
+  line-height: 1.68;
+
+  color: var(--muted);
+}
+
+@media (max-width: 1080px) {
+  .errands-shell {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .errands-capabilities {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .errands-section {
+    padding-top: 80px;
+  }
+
+  .errands-copy h2 {
+    font-size: 38px;
+  }
+
+  .errands-copy > p {
+    font-size: 13.5px;
+  }
+
+  .errands-capabilities {
+    margin-top: 68px;
+    grid-template-columns: 1fr;
+  }
+
+  .errands-capabilities article {
+    min-height: 210px;
+  }
+}
+
+/* =========================================================
    PARTNER ROOM
 ========================================================= */
 
@@ -2281,3 +2523,370 @@ textarea:focus-visible,
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== RUNNERS ERRANDS PREMIUM FIX ===== */
+
+#errands.errands-section {
+  position: relative;
+  overflow: hidden;
+
+  padding: 110px 0 0;
+
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(10, 42, 151, 0.08),
+      transparent 34%
+    ),
+    var(--surface);
+
+  color: var(--ink);
+
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 72px;
+}
+
+#errands.errands-section::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 4px;
+
+  background: linear-gradient(
+    90deg,
+    var(--terracotta) 0%,
+    var(--terracotta) 24%,
+    var(--navy) 24%,
+    var(--navy) 100%
+  );
+}
+
+#errands .errands-shell {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(420px, 0.82fr);
+  gap: 90px;
+  align-items: start;
+}
+
+#errands .errands-copy {
+  padding-bottom: 10px;
+}
+
+#errands .errands-copy h2 {
+  max-width: 700px;
+
+  margin: 16px 0 0;
+
+  font-family: var(--font-fraunces);
+  font-size: clamp(40px, 4.2vw, 54px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+
+  color: var(--navy-deep);
+}
+
+#errands .errands-copy h2 em {
+  font-weight: 500;
+  font-style: italic;
+
+  color: var(--navy);
+}
+
+#errands .errands-copy > p {
+  max-width: 650px;
+
+  margin: 23px 0 0;
+
+  font-size: 14.5px;
+  line-height: 1.78;
+
+  color: var(--muted);
+}
+
+#errands .errands-access-note {
+  max-width: 650px;
+
+  margin-top: 34px;
+  padding: 23px 24px;
+
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--terracotta);
+  border-radius: 0 14px 14px 0;
+
+  background: var(--paper);
+
+  box-shadow: 0 12px 35px rgba(7, 16, 51, 0.045);
+}
+
+#errands .errands-access-note span {
+  display: block;
+
+  margin-bottom: 9px;
+
+  font-family: var(--font-plex-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+
+  color: var(--terracotta);
+}
+
+#errands .errands-access-note strong {
+  display: block;
+
+  font-family: var(--font-fraunces);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.48;
+
+  color: var(--navy-deep);
+}
+
+#errands .errands-partner-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 25px;
+
+  font-size: 12.5px;
+  font-weight: 600;
+
+  color: var(--navy-deep);
+
+  transition: color 160ms ease;
+}
+
+#errands .errands-partner-link:hover {
+  color: var(--navy);
+}
+
+#errands .errands-partner-link span {
+  transition: transform 160ms ease;
+}
+
+#errands .errands-partner-link:hover span {
+  transform: translateX(4px);
+}
+
+
+/* ----- OPERATING MODEL ----- */
+
+#errands .errands-flow {
+  overflow: hidden;
+
+  border: 1px solid var(--line);
+  border-radius: 18px;
+
+  background: var(--paper);
+
+  box-shadow: 0 18px 50px rgba(7, 16, 51, 0.055);
+}
+
+#errands .errands-flow-heading {
+  padding: 25px 25px 22px;
+
+  background: var(--navy-deep);
+  color: white;
+}
+
+#errands .errands-flow-heading .eyebrow {
+  color: var(--green);
+}
+
+#errands .errands-flow-heading h3 {
+  margin: 7px 0 0;
+
+  font-family: var(--font-fraunces);
+  font-size: 23px;
+  font-weight: 600;
+
+  color: white;
+}
+
+#errands .errands-flow-row {
+  min-height: 83px;
+
+  padding: 0 24px;
+
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  align-items: center;
+
+  border-bottom: 1px solid var(--line-soft);
+}
+
+#errands .errands-flow-row:last-child {
+  border-bottom: 0;
+}
+
+#errands .errands-flow-row > span {
+  font-family: var(--font-plex-mono);
+  font-size: 9px;
+  font-weight: 500;
+
+  color: var(--terracotta);
+}
+
+#errands .errands-flow-row div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#errands .errands-flow-row strong {
+  font-family: var(--font-fraunces);
+  font-size: 17px;
+  font-weight: 600;
+
+  color: var(--navy-deep);
+}
+
+#errands .errands-flow-row small {
+  max-width: 410px;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  color: var(--muted);
+}
+
+
+/* ----- FOUR CAPABILITIES ----- */
+
+#errands .errands-capabilities {
+  position: relative;
+  z-index: 2;
+
+  margin-top: 88px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+#errands .errands-capabilities article {
+  min-height: 245px;
+
+  padding: 28px;
+
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+
+  background: var(--paper);
+
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+#errands .errands-capabilities article:hover {
+  background: #fbfcff;
+}
+
+#errands .errands-capabilities article > span {
+  display: block;
+
+  font-family: var(--font-plex-mono);
+  font-size: 8.5px;
+  font-weight: 500;
+
+  color: var(--terracotta);
+}
+
+#errands .errands-capabilities h3 {
+  margin: 39px 0 0;
+
+  font-family: var(--font-fraunces);
+  font-size: 20px;
+  font-weight: 600;
+
+  color: var(--navy-deep);
+}
+
+#errands .errands-capabilities p {
+  margin: 13px 0 0;
+
+  font-size: 12px;
+  line-height: 1.7;
+
+  color: var(--muted);
+}
+
+
+/* ----- TABLET ----- */
+
+@media (max-width: 1080px) {
+  #errands .errands-shell {
+    grid-template-columns: 1fr;
+    gap: 58px;
+  }
+
+  #errands .errands-flow {
+    max-width: 720px;
+  }
+
+  #errands .errands-capabilities {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ----- MOBILE ----- */
+
+@media (max-width: 700px) {
+  #errands.errands-section {
+    padding-top: 78px;
+  }
+
+  #errands .errands-copy h2 {
+    font-size: 38px;
+  }
+
+  #errands .errands-copy > p {
+    font-size: 13.5px;
+  }
+
+  #errands .errands-access-note {
+    padding: 20px;
+  }
+
+  #errands .errands-access-note strong {
+    font-size: 15.5px;
+  }
+
+  #errands .errands-flow-heading {
+    padding: 22px;
+  }
+
+  #errands .errands-flow-row {
+    min-height: 90px;
+
+    padding: 0 20px;
+
+    grid-template-columns: 40px 1fr;
+  }
+
+  #errands .errands-capabilities {
+    margin-top: 65px;
+
+    grid-template-columns: 1fr;
+  }
+
+  #errands .errands-capabilities article {
+    min-height: 205px;
+  }
+}
+
+/* ===== END RUNNERS ERRANDS PREMIUM FIX ===== */
