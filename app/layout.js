@@ -39,9 +39,16 @@ const plexMono = localFont({
 });
 
 export const metadata = {
-  title: "Runners Futurum — Intelligence. Innovation. Impact.",
+  title: "Runners Futurum",
   description:
     "Runners Futurum builds practical AI platforms and technology businesses for Nigeria across institutional intelligence, agriculture and real-world services.",
+  applicationName: "Runners Futurum",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: "Runners Futurum",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export default function RootLayout({ children }) {
