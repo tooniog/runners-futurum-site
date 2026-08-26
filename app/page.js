@@ -45,6 +45,14 @@ const demoCards = [
       "A tailored primary-school AI operating environment focused on teacher support, parent experience, leadership intelligence and safeguarding-aware workflows.",
     href: ST_SAVIOURS_DEMO,
   },
+  {
+    number: "04",
+    type: "AI + Real-World Services",
+    name: "Runners Errands",
+    description:
+      "An AI-powered convenience and fulfilment platform designed to turn natural-language requests into trusted real-world execution.",
+    href: RUNNERS_ERRANDS,
+  },
 ];
 
 export default function Home() {
@@ -871,10 +879,6 @@ export default function Home() {
           <div className="footer-links">
             <a href={RUNNERS_AGRO} target="_blank" rel="noreferrer">
               Runners Agro
-            </a>
-
-            <a href="#errands">
-              Runners Errands
             </a>
 
             <a href={BITES_AI} target="_blank" rel="noreferrer">
