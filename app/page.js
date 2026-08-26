@@ -11,8 +11,8 @@ const RUNNERS_ERRANDS = "https://runners-errands-app-demo.vercel.app/";
 const BOI_DEMO =
   "https://runnersfuturum-runnerbot2-boi-demo.vercel.app/";
 
-const GREENSPRINGS_DEMO =
-  "https://runnersfuturum-runnerbot2-greenspri.vercel.app/";
+const AMCON_DEMO =
+  "https://runnersfuturum-runnerbot2-amcon-dem.vercel.app/";
 
 const ST_SAVIOURS_DEMO =
   "https://runnersfuturum-runnerbot2-stsaviour.vercel.app/";
@@ -31,11 +31,11 @@ const demoCards = [
   },
   {
     number: "02",
-    type: "Education OS",
-    name: "Greensprings Connect",
+    type: "Recovery Intelligence",
+    name: "AMCON Recovery Intelligence",
     description:
-      "A tailored Education OS demonstration spanning students, teachers, parents, school operations and leadership intelligence.",
-    href: GREENSPRINGS_DEMO,
+      "A tailored Runnerbot 2 demonstration for recovery knowledge, case intelligence, workflow coordination and executive institutional intelligence.",
+    href: AMCON_DEMO,
   },
   {
     number: "03",
@@ -44,14 +44,6 @@ const demoCards = [
     description:
       "A tailored primary-school AI operating environment focused on teacher support, parent experience, leadership intelligence and safeguarding-aware workflows.",
     href: ST_SAVIOURS_DEMO,
-  },
-  {
-    number: "04",
-    type: "AI + Real-World Services",
-    name: "Runners Errands",
-    description:
-      "An AI-powered convenience and fulfilment platform designed to turn natural-language requests into trusted real-world execution.",
-    href: RUNNERS_ERRANDS,
   },
 ];
 
