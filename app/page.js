@@ -691,7 +691,7 @@ export default function Home() {
           </div>
           <div className="principle-grid">
             <article><span>LIVE PRODUCT</span><h3>Bites AI · Padi AI · Sabe</h3><p>Accessible consumer software. Sabe is in early access; capabilities and availability continue to evolve.</p></article>
-            <article><span>PRIVATE EVALUATION</span><h3>Runnerbot 2</h3><p>BOI, financial-services, school and property evaluators use controlled or synthetic cases. They do not establish an institutional approval, contract or live integration.</p></article>
+            <article><span>PRIVATE EVALUATION</span><h3>Runnerbot 2</h3><p>Controlled evaluator environments for selected partner and investor reviews. These private demonstrations do not establish public approval, contracts or live integrations.</p></article>
             <article><span>OPERATIONS STAGING</span><h3>Runnerbot 3 · Runners Errands</h3><p>Lagos operating software in staging. Real dispatch, rider onboarding, payments and proof-of-delivery require operational verification before commercial activation.</p></article>
             <article><span>PLANNED / PREPAREDNESS</span><h3>Runners Futures · Runnerbot 4</h3><p>Founding U16 football trials and future agent-governance infrastructure are preparatory workstreams, not live public services.</p></article>
           </div>
@@ -935,6 +935,10 @@ export default function Home() {
 
             <a href={PADI_AI} target="_blank" rel="noreferrer">
               Padi AI
+            </a>
+
+            <a href={SABE} target="_blank" rel="noopener noreferrer">
+              Sabe
             </a>
           </div>
 
