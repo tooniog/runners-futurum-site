@@ -83,6 +83,7 @@ export default function Home() {
             <a href="#portfolio">Platforms</a>
             <a href="#intel">Runners Intel</a>
             <a href="#products">Products</a>
+            <a href="#runnerbot-family">Runnerbots</a>
             <a href="#partner-room">Partner Room</a>
           </nav>
 
@@ -488,9 +489,7 @@ export default function Home() {
             </h2>
 
             <p>
-              Runners Errands is an AI-powered convenience and fulfilment
-              platform being built around one simple objective: maximum
-              convenience with minimum friction.
+              Runners Errands is an AI-assisted convenience and fulfilment operating system in staging for Lagos, initially focused on Victoria Island and Ikoyi. Live commercial activation is subject to field readiness.
             </p>
 
             <p>
@@ -537,7 +536,7 @@ export default function Home() {
               [
                 "04",
                 "Execute",
-                "Trusted human runners complete the real-world task.",
+                "Vetted human runners are intended to complete tasks after live dispatch is activated.",
               ],
               [
                 "05",
@@ -580,8 +579,7 @@ export default function Home() {
             <span>03</span>
             <h3>Recurring Convenience</h3>
             <p>
-              The platform is designed to support scheduled and repeat errands
-              for high-frequency everyday needs.
+              The staged platform is designed to support scheduled and repeat errands after field testing.
             </p>
           </article>
 
@@ -678,6 +676,71 @@ export default function Home() {
               <p>Ask Sabe. Find Opportunity. Get It Done. A Nigeria-first companion for everyday guidance and practical opportunity discovery.</p>
               <a href={SABE} target="_blank" rel="noopener noreferrer" className="button button-dark">Open Sabe <span>↗</span></a>
             </article>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ================= DELIVERY EVIDENCE ================= */}
+      <section id="built-now" className="section surface-section">
+        <div className="page-shell">
+          <div className="section-heading">
+            <span className="eyebrow navy">Built now / next milestones</span>
+            <h2>Real software. <em>Clear boundaries.</em></h2>
+            <p>Existing products, controlled evaluators and planned field operations are different stages. We label them explicitly and evaluate outcomes before claiming deployment impact.</p>
+          </div>
+          <div className="principle-grid">
+            <article><span>LIVE PRODUCT</span><h3>Bites AI · Padi AI · Sabe</h3><p>Accessible consumer software. Sabe is in early access; capabilities and availability continue to evolve.</p></article>
+            <article><span>PRIVATE EVALUATION</span><h3>Runnerbot 2</h3><p>BOI, financial-services, school and property evaluators use controlled or synthetic cases. They do not establish an institutional approval, contract or live integration.</p></article>
+            <article><span>OPERATIONS STAGING</span><h3>Runnerbot 3 · Runners Errands</h3><p>Lagos operating software in staging. Real dispatch, rider onboarding, payments and proof-of-delivery require operational verification before commercial activation.</p></article>
+            <article><span>PLANNED / PREPAREDNESS</span><h3>Runners Futures · Runnerbot 4</h3><p>Founding U16 football trials and future agent-governance infrastructure are preparatory workstreams, not live public services.</p></article>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= RUNNERBOT FAMILY ================= */}
+      <section id="runnerbot-family" className="section paper-section">
+        <div className="page-shell">
+          <div className="section-heading">
+            <span className="eyebrow terracotta">Runners intelligence architecture</span>
+            <h2>One family. <em>Distinct missions.</em></h2>
+            <p>Human authority, verifiable execution and institutional trust are central. The product family is not a claim that every layer has launched commercially.</p>
+          </div>
+          <div className="venture-grid">
+            <article className="venture-card">
+              <div className="venture-top"><span className="venture-number">01</span><span className="mini-status">AGRICULTURAL INTELLIGENCE</span></div>
+              <h3>Runnerbot 1</h3>
+              <p>Intelligence for Runners Agro and RAMAS agricultural workflows. Digital-platform availability is distinct from demonstrated field deployment.</p>
+              <a href={RUNNERS_AGRO} target="_blank" rel="noopener noreferrer">Explore Runners Agro <span>↗</span></a>
+            </article>
+            <article className="venture-card">
+              <div className="venture-top"><span className="venture-number">02</span><span className="mini-status">INSTITUTIONAL EVALUATORS</span></div>
+              <h3>Runnerbot 2</h3>
+              <p>Governed enterprise, education and institutional intelligence, combining grounded assistance, preparation, escalation and human-led decisions.</p>
+              <a href="#partner-room">Explore selected evaluators <span>→</span></a>
+            </article>
+            <article className="venture-card">
+              <div className="venture-top"><span className="venture-number">03</span><span className="mini-status">OPERATIONS STAGING</span></div>
+              <h3>Runnerbot 3</h3>
+              <p>Order understanding, serviceability and operations coordination for Runners Errands. Field operations, rider support and payments remain activation gates.</p>
+              <a href="#errands">Explore the operating model <span>→</span></a>
+            </article>
+          </div>
+          <div className="intel-principle" style={{ marginTop: 24 }}>
+            <span>RUNNERBOT 4 · PREPAREDNESS / MISSION · NOT LIVE</span>
+            <strong>Future sovereign agent-authority infrastructure: Identity → Authority → Scope → Policy → Human Approval → Runtime Enforcement → Audit → Revocation / Kill.</strong>
+            <p>Research and preparedness only. No completed implementation, institutional deployment or current commercial availability is claimed.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= RUNNERS FUTURES ================= */}
+      <section id="futures" className="section surface-section">
+        <div className="page-shell">
+          <div className="section-heading">
+            <span className="eyebrow navy">Runners Futures · Planned</span>
+            <h2>Developing the next generation, <em>starting with football.</em></h2>
+            <p>The proposed Lagos U16 founding talent-identification trials and development pathway remain subject to venue, safeguarding, coaching and operational readiness. No public registration is currently advertised as open.</p>
           </div>
         </div>
       </section>
@@ -877,7 +940,7 @@ export default function Home() {
 
           <div className="footer-meta">
             <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-            <span>© 2026 Runners Futurum</span>
+            <span>© 2026 Runners Futurum · Product status varies by stage</span>
           </div>
         </div>
       </footer>
