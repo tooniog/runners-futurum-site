@@ -96,3 +96,15 @@ test("login provides protected catalogue; logout revokes browser cookie", async 
   });
   assert.equal(postLogout.status, 401);
 });
+
+test("expired and overlong signed sessions are rejected", async () => {
+  const { createHmac } = await import("node:crypto");
+  for (const exp of [Math.floor(Date.now() / 1000) - 10, Math.floor(Date.now() / 1000) + 31 * 60]) {
+    const payload = Buffer.from(JSON.stringify({ v: 1, exp })).toString("base64url");
+    const sig = createHmac("sha256", process.env.PARTNER_SESSION_SECRET).update(payload).digest("base64url");
+    const response = await fetch(url + "/api/partner/session", {
+      headers: { cookie: "__Host-rf_partner=" + payload + "." + sig },
+    });
+    assert.equal(response.status, 401);
+  }
+});
