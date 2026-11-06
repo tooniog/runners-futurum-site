@@ -1,59 +1,44 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BITES_AI = "https://bites-ai.vercel.app/";
 const PADI_AI = "https://padiai.vercel.app/";
 const RUNNERS_AGRO = "https://runners-agro.vercel.app/";
 const RUNNERS_ERRANDS = "https://runners-errands-staging.vercel.app/";
 const SABE = "https://sabe-xi.vercel.app/";
-const ARM_EVALUATOR = "https://runnerbot2-institutional.vercel.app/arm-evaluator";
-const CSL_EVALUATOR = "https://runnerbot2-institutional.vercel.app/csl-evaluator";
-const ICM_EVALUATOR = "https://runners-icm-evaluator.vercel.app/";
-const RUNNERBOT_RESEARCH = "https://runnerbot2-research.vercel.app/";
-
-const BOI_DEMO =
-  "https://runnersfuturum-runnerbot2-boi-demo.vercel.app/";
-
-const AMCON_DEMO =
-  "https://runnersfuturum-runnerbot2-amcon-dem.vercel.app/";
-
-const ST_SAVIOURS_DEMO =
-  "https://runnersfuturum-runnerbot2-stsaviour.vercel.app/";
-
 const EMAIL = "runnersfuturum@gmail.com";
-const PARTNER_PASSWORD = "RUNNERS2026";
-
-const demoCards = [
-  { number: "01", type: "PRIVATE EVALUATOR", name: "BOI — Enterprise Development", description: "Controlled applicant-preparation, BDSP productivity and governance evaluator. Not an approved BOI service or pilot.", href: BOI_DEMO, status: "Live private evaluator" },
-  { number: "02", type: "REFERENCE DEMONSTRATION", name: "AMCON — Recovery Intelligence", description: "Synthetic recovery intelligence and workflow demonstration. No AMCON systems connected.", href: AMCON_DEMO, status: "Reference demonstration" },
-  { number: "03", type: "EDUCATION DEMONSTRATION", name: "St Saviour’s — Family & Admissions", description: "Proposed family and admissions intelligence experience; not a live school service.", href: ST_SAVIOURS_DEMO, status: "Pilot proposal / demonstration" },
-  { number: "04", type: "INSTITUTIONAL EVALUATION", name: "CSL — Runnerbot 2", description: "Controlled institutional workflow evaluator. No confirmed enterprise licence or production integration.", href: CSL_EVALUATOR, status: "Institutional evaluation" },
-  { number: "05", type: "INSTITUTIONAL ENGAGEMENT", name: "ARM — Runnerbot 2", description: "Synthetic financial-services evaluator supporting discussion, not a purchased, integrated or deployed product.", href: ARM_EVALUATOR, status: "Engagement / discussion" },
-  { number: "06", type: "PRIVATE EVALUATOR", name: "ICM / Broll — Mall OS", description: "Human-governed property and retail operations evaluator, not a client production deployment.", href: ICM_EVALUATOR, status: "Private evaluator" },
-  { number: "07", type: "OPERATIONS STAGING", name: "Runners Errands — Runnerbot 3", description: "Current Lagos operations staging; no real-money payments or live rider dispatch. Field activation pending.", href: RUNNERS_ERRANDS, status: "Staging / pre-launch" },
-  { number: "08", type: "RESEARCH DEMONSTRATION", name: "Runnerbot 2 — Research & Assurance", description: "Public-facing research and assurance materials, distinct from institutional deployments.", href: RUNNERBOT_RESEARCH, status: "Research demonstrator" },
-];
 
 export default function Home() {
   const [roomOpen, setRoomOpen] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState(false);
-
-  function unlockRoom(e) {
-    e.preventDefault();
-
-    if (password.trim().toUpperCase() === PARTNER_PASSWORD) {
-      setRoomOpen(true);
-      setPasswordError(false);
-      setPassword("");
-      return;
-    }
-
-    setPasswordError(true);
+  const [roomBusy, setRoomBusy] = useState(false);
+  const [demoCards, setDemoCards] = useState([]);
+  async function refreshRoom() {
+    try {
+      const r = await fetch("/api/partner/session", { cache: "no-store" });
+      if (!r.ok) throw new Error("Unauthorized");
+      const data = await r.json();
+      setDemoCards(data.cards); setRoomOpen(true); return true;
+    } catch { setDemoCards([]); setRoomOpen(false); return false; }
   }
-
+  useEffect(() => { refreshRoom(); }, []);
+  async function unlockRoom(e) {
+    e.preventDefault();
+    if (roomBusy) return;
+    setRoomBusy(true); setPasswordError(false);
+    try {
+      const r = await fetch("/api/partner/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code: password }) });
+      setPassword("");
+      if (!r.ok || !(await refreshRoom())) setPasswordError(true);
+    } catch { setPasswordError(true); } finally { setRoomBusy(false); }
+  }
+  async function lockRoom() {
+    setDemoCards([]); setRoomOpen(false); setPassword("");
+    await fetch("/api/partner/logout", { method: "POST" }).catch(() => {});
+  }
   return (
     <main>
       {/* ================= NAV ================= */}
@@ -780,7 +765,7 @@ export default function Home() {
                 <h3>Enter the Partner Room</h3>
 
                 <p>
-                  Enter the access code provided by Runners Futurum. This navigation gate is not a security boundary; each private evaluator has separate access controls. Use synthetic information only.
+                  Enter the private access code provided by Runners Futurum. The server verifies access and sessions expire automatically. Each evaluator has its own controls. Use synthetic information only.
                 </p>
               </div>
 
@@ -797,7 +782,7 @@ export default function Home() {
                 />
 
                 <button type="submit">
-                  Enter room <span>→</span>
+                  {roomBusy ? "Verifying…" : "Enter room"} <span>→</span>
                 </button>
 
                 {passwordError && (
@@ -815,7 +800,7 @@ export default function Home() {
                   PARTNER ROOM VIEW OPEN
                 </div>
 
-                <button onClick={() => setRoomOpen(false)}>
+                <button onClick={lockRoom}>
                   Lock room
                 </button>
               </div>
