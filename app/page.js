@@ -6,7 +6,12 @@ import { useState } from "react";
 const BITES_AI = "https://bites-ai.vercel.app/";
 const PADI_AI = "https://padiai.vercel.app/";
 const RUNNERS_AGRO = "https://runners-agro.vercel.app/";
-const RUNNERS_ERRANDS = "https://runners-errands-app-demo.vercel.app/";
+const RUNNERS_ERRANDS = "https://runners-errands-staging.vercel.app/";
+const SABE = "https://sabe-xi.vercel.app/";
+const ARM_EVALUATOR = "https://runnerbot2-institutional.vercel.app/arm-evaluator";
+const CSL_EVALUATOR = "https://runnerbot2-institutional.vercel.app/csl-evaluator";
+const ICM_EVALUATOR = "https://runners-icm-evaluator.vercel.app/";
+const RUNNERBOT_RESEARCH = "https://runnerbot2-research.vercel.app/";
 
 const BOI_DEMO =
   "https://runnersfuturum-runnerbot2-boi-demo.vercel.app/";
@@ -21,38 +26,14 @@ const EMAIL = "runnersfuturum@gmail.com";
 const PARTNER_PASSWORD = "RUNNERS2026";
 
 const demoCards = [
-  {
-    number: "01",
-    type: "Enterprise Intelligence",
-    name: "BOI Enterprise Platform",
-    description:
-      "A tailored demonstration of how Runnerbot 2 can support entrepreneur guidance, enterprise readiness, workflow support and institutional intelligence.",
-    href: BOI_DEMO,
-  },
-  {
-    number: "02",
-    type: "Recovery Intelligence",
-    name: "AMCON Recovery Intelligence",
-    description:
-      "A tailored Runnerbot 2 demonstration for recovery knowledge, case intelligence, workflow coordination and executive institutional intelligence.",
-    href: AMCON_DEMO,
-  },
-  {
-    number: "03",
-    type: "Education OS",
-    name: "St Saviour’s Connect",
-    description:
-      "A tailored primary-school AI operating environment focused on teacher support, parent experience, leadership intelligence and safeguarding-aware workflows.",
-    href: ST_SAVIOURS_DEMO,
-  },
-  {
-    number: "04",
-    type: "AI + Real-World Services",
-    name: "Runners Errands",
-    description:
-      "An AI-powered convenience and fulfilment platform designed to turn natural-language requests into trusted real-world execution.",
-    href: RUNNERS_ERRANDS,
-  },
+  { number: "01", type: "PRIVATE EVALUATOR", name: "BOI — Enterprise Development", description: "Controlled applicant-preparation, BDSP productivity and governance evaluator. Not an approved BOI service or pilot.", href: BOI_DEMO, status: "Live private evaluator" },
+  { number: "02", type: "REFERENCE DEMONSTRATION", name: "AMCON — Recovery Intelligence", description: "Synthetic recovery intelligence and workflow demonstration. No AMCON systems connected.", href: AMCON_DEMO, status: "Reference demonstration" },
+  { number: "03", type: "EDUCATION DEMONSTRATION", name: "St Saviour’s — Family & Admissions", description: "Proposed family and admissions intelligence experience; not a live school service.", href: ST_SAVIOURS_DEMO, status: "Pilot proposal / demonstration" },
+  { number: "04", type: "INSTITUTIONAL EVALUATION", name: "CSL — Runnerbot 2", description: "Controlled institutional workflow evaluator. No confirmed enterprise licence or production integration.", href: CSL_EVALUATOR, status: "Institutional evaluation" },
+  { number: "05", type: "INSTITUTIONAL ENGAGEMENT", name: "ARM — Runnerbot 2", description: "Synthetic financial-services evaluator supporting discussion, not a purchased, integrated or deployed product.", href: ARM_EVALUATOR, status: "Engagement / discussion" },
+  { number: "06", type: "PRIVATE EVALUATOR", name: "ICM / Broll — Mall OS", description: "Human-governed property and retail operations evaluator, not a client production deployment.", href: ICM_EVALUATOR, status: "Private evaluator" },
+  { number: "07", type: "OPERATIONS STAGING", name: "Runners Errands — Runnerbot 3", description: "Current Lagos operations staging; no real-money payments or live rider dispatch. Field activation pending.", href: RUNNERS_ERRANDS, status: "Staging / pre-launch" },
+  { number: "08", type: "RESEARCH DEMONSTRATION", name: "Runnerbot 2 — Research & Assurance", description: "Public-facing research and assurance materials, distinct from institutional deployments.", href: RUNNERBOT_RESEARCH, status: "Research demonstrator" },
 ];
 
 export default function Home() {
@@ -102,6 +83,7 @@ export default function Home() {
             <a href="#portfolio">Platforms</a>
             <a href="#intel">Runners Intel</a>
             <a href="#products">Products</a>
+            <a href="#runnerbot-family">Runnerbots</a>
             <a href="#partner-room">Partner Room</a>
           </nav>
 
@@ -157,8 +139,8 @@ export default function Home() {
 
             <div className="hero-stats">
               <div>
-                <strong>03</strong>
-                <span>core technology platforms</span>
+                <strong>NG</strong>
+                <span>Nigeria-first systems</span>
               </div>
 
               <div>
@@ -303,7 +285,7 @@ export default function Home() {
             <span className="eyebrow navy">The company</span>
 
             <h2>
-              Three platforms.
+              Connected platforms.
               <br />
               <em>One connected technology thesis.</em>
             </h2>
@@ -507,9 +489,7 @@ export default function Home() {
             </h2>
 
             <p>
-              Runners Errands is an AI-powered convenience and fulfilment
-              platform being built around one simple objective: maximum
-              convenience with minimum friction.
+              Runners Errands is an AI-assisted convenience and fulfilment operating system in staging for Lagos, initially focused on Victoria Island and Ikoyi. Live commercial activation is subject to field readiness.
             </p>
 
             <p>
@@ -522,9 +502,7 @@ export default function Home() {
             <div className="errands-access-note">
               <span>Investor access</span>
               <strong>
-                A working Stage 1 app demonstration is available to authorised
-                investors and strategic partners inside the Investor &amp;
-                Partner Room.
+                A controlled operations-staging evaluator is available in the Investor &amp; Partner Room. It does not dispatch live riders or process real-money payments.
               </strong>
             </div>
 
@@ -558,7 +536,7 @@ export default function Home() {
               [
                 "04",
                 "Execute",
-                "Trusted human runners complete the real-world task.",
+                "Vetted human runners are intended to complete tasks after live dispatch is activated.",
               ],
               [
                 "05",
@@ -601,8 +579,7 @@ export default function Home() {
             <span>03</span>
             <h3>Recurring Convenience</h3>
             <p>
-              The platform is designed to support scheduled and repeat errands
-              for high-frequency everyday needs.
+              The staged platform is designed to support scheduled and repeat errands after field testing.
             </p>
           </article>
 
@@ -622,7 +599,7 @@ export default function Home() {
         <div className="page-shell">
           <div className="section-heading">
             <span className="eyebrow terracotta">
-              Products in market
+              Consumer products · varying stages
             </span>
 
             <h2>
@@ -692,6 +669,78 @@ export default function Home() {
                 Open Padi AI <span>↗</span>
               </a>
             </article>
+            <article className="consumer-card">
+              <div className="consumer-label"><span className="consumer-dot" /> LIVE PRODUCT / EARLY ACCESS</div>
+              <h3>Sabe</h3>
+              <p className="consumer-subtitle">The AI Companion for Life in Nigeria.</p>
+              <p>Ask Sabe. Find Opportunity. Get It Done. A Nigeria-first companion for everyday guidance and practical opportunity discovery.</p>
+              <a href={SABE} target="_blank" rel="noopener noreferrer" className="button button-dark">Open Sabe <span>↗</span></a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ================= DELIVERY EVIDENCE ================= */}
+      <section id="built-now" className="section surface-section">
+        <div className="page-shell">
+          <div className="section-heading">
+            <span className="eyebrow navy">Built now / next milestones</span>
+            <h2>Real software. <em>Clear boundaries.</em></h2>
+            <p>Existing products, controlled evaluators and planned field operations are different stages. We label them explicitly and evaluate outcomes before claiming deployment impact.</p>
+          </div>
+          <div className="principle-grid">
+            <article><span>LIVE PRODUCT</span><h3>Bites AI · Padi AI · Sabe</h3><p>Accessible consumer software. Sabe is in early access; capabilities and availability continue to evolve.</p></article>
+            <article><span>PRIVATE EVALUATION</span><h3>Runnerbot 2</h3><p>BOI, financial-services, school and property evaluators use controlled or synthetic cases. They do not establish an institutional approval, contract or live integration.</p></article>
+            <article><span>OPERATIONS STAGING</span><h3>Runnerbot 3 · Runners Errands</h3><p>Lagos operating software in staging. Real dispatch, rider onboarding, payments and proof-of-delivery require operational verification before commercial activation.</p></article>
+            <article><span>PLANNED / PREPAREDNESS</span><h3>Runners Futures · Runnerbot 4</h3><p>Founding U16 football trials and future agent-governance infrastructure are preparatory workstreams, not live public services.</p></article>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= RUNNERBOT FAMILY ================= */}
+      <section id="runnerbot-family" className="section paper-section">
+        <div className="page-shell">
+          <div className="section-heading">
+            <span className="eyebrow terracotta">Runners intelligence architecture</span>
+            <h2>One family. <em>Distinct missions.</em></h2>
+            <p>Human authority, verifiable execution and institutional trust are central. The product family is not a claim that every layer has launched commercially.</p>
+          </div>
+          <div className="venture-grid">
+            <article className="venture-card">
+              <div className="venture-top"><span className="venture-number">01</span><span className="mini-status">AGRICULTURAL INTELLIGENCE</span></div>
+              <h3>Runnerbot 1</h3>
+              <p>Intelligence for Runners Agro and RAMAS agricultural workflows. Digital-platform availability is distinct from demonstrated field deployment.</p>
+              <a href={RUNNERS_AGRO} target="_blank" rel="noopener noreferrer">Explore Runners Agro <span>↗</span></a>
+            </article>
+            <article className="venture-card">
+              <div className="venture-top"><span className="venture-number">02</span><span className="mini-status">INSTITUTIONAL EVALUATORS</span></div>
+              <h3>Runnerbot 2</h3>
+              <p>Governed enterprise, education and institutional intelligence, combining grounded assistance, preparation, escalation and human-led decisions.</p>
+              <a href="#partner-room">Explore selected evaluators <span>→</span></a>
+            </article>
+            <article className="venture-card">
+              <div className="venture-top"><span className="venture-number">03</span><span className="mini-status">OPERATIONS STAGING</span></div>
+              <h3>Runnerbot 3</h3>
+              <p>Order understanding, serviceability and operations coordination for Runners Errands. Field operations, rider support and payments remain activation gates.</p>
+              <a href="#errands">Explore the operating model <span>→</span></a>
+            </article>
+          </div>
+          <div className="runnerbot4-mission">
+            <span>RUNNERBOT 4 · PREPAREDNESS / MISSION · NOT LIVE</span>
+            <strong>Future sovereign agent-authority infrastructure: Identity → Authority → Scope → Policy → Human Approval → Runtime Enforcement → Audit → Revocation / Kill.</strong>
+            <p>Research and preparedness only. No completed implementation, institutional deployment or current commercial availability is claimed.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= RUNNERS FUTURES ================= */}
+      <section id="futures" className="section surface-section">
+        <div className="page-shell">
+          <div className="section-heading">
+            <span className="eyebrow navy">Runners Futures · Planned</span>
+            <h2>Developing the next generation, <em>starting with football.</em></h2>
+            <p>The proposed Lagos U16 founding talent-identification trials and development pathway remain subject to venue, safeguarding, coaching and operational readiness. No public registration is currently advertised as open.</p>
           </div>
         </div>
       </section>
@@ -713,9 +762,7 @@ export default function Home() {
             </div>
 
             <p>
-              A controlled demonstration environment for investors, strategic
-              partners and institutional stakeholders to explore selected
-              Runners Futurum platforms.
+              A curated collection of controlled, synthetic demonstrations, private evaluators and staged operating systems. Institutional evaluation does not establish a customer, investor or licensing relationship.
             </p>
           </div>
 
@@ -733,7 +780,7 @@ export default function Home() {
                 <h3>Enter the Partner Room</h3>
 
                 <p>
-                  Enter the access code provided by Runners Futurum.
+                  Enter the access code provided by Runners Futurum. This navigation gate is not a security boundary; each private evaluator has separate access controls. Use synthetic information only.
                 </p>
               </div>
 
@@ -765,7 +812,7 @@ export default function Home() {
               <div className="room-open-bar">
                 <div>
                   <span className="room-open-dot" />
-                  PARTNER ROOM UNLOCKED
+                  PARTNER ROOM VIEW OPEN
                 </div>
 
                 <button onClick={() => setRoomOpen(false)}>
@@ -784,6 +831,7 @@ export default function Home() {
                     <h3>{demo.name}</h3>
 
                     <p>{demo.description}</p>
+                    <p className="mini-status" style={{ marginTop: 10, marginBottom: 12 }}>{demo.status}</p>
 
                     <a
                       href={demo.href}
@@ -892,7 +940,7 @@ export default function Home() {
 
           <div className="footer-meta">
             <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
-            <span>© 2026 Runners Futurum</span>
+            <span>© 2026 Runners Futurum · Product status varies by stage</span>
           </div>
         </div>
       </footer>
