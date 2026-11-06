@@ -1,0 +1,39 @@
+name: Partner Room security checks
+on:
+  pull_request:
+    paths:
+      - 'app/**'
+      - 'lib/**'
+      - 'tests/**'
+      - '.github/workflows/partner-security.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  auth-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Build and smoke test
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PARTNER_ACCESS_CODE="$(openssl rand -hex 32)"
+          export PARTNER_SESSION_SECRET="$(openssl rand -hex 48)"
+          npm ci
+          npm run build
+          node --test tests/partner-room-smoke.test.mjs
+      - name: Check production dependency vulnerabilities
+        shell: bash
+        run: |
+          npm audit --omit=dev --json > audit-results.json || true
+          node -e 'const a=require("./audit-results.json"); console.log("Production dependency audit:",JSON.stringify(a.metadata?.vulnerabilities||{})); console.log("Affected:",Object.entries(a.vulnerabilities||{}).filter(([,v])=>["high","critical"].includes(v.severity)).map(([k,v])=>k+":"+v.severity).join(", ") || "none"); if((a.metadata?.vulnerabilities?.high||0)+(a.metadata?.vulnerabilities?.critical||0)>0)process.exit(1)'
