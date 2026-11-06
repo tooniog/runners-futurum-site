@@ -2890,3 +2890,48 @@ textarea:focus-visible,
 }
 
 /* ===== END RUNNERS ERRANDS PREMIUM FIX ===== */
+
+
+/* November 2026 portfolio refresh: three current consumer products and planned Runnerbot 4. */
+@media (min-width: 901px) {
+  .consumer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.runnerbot4-mission {
+  margin-top: 24px;
+  padding: clamp(22px, 4vw, 35px);
+  border-radius: 18px;
+  border: 1px solid rgba(56, 229, 0, 0.3);
+  background: linear-gradient(125deg, #071033 0%, #0a2a97 100%);
+  color: #fff;
+  max-width: none;
+}
+.runnerbot4-mission span {
+  display: block;
+  margin-bottom: 12px;
+  font-family: var(--font-plex-mono);
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  color: #38e500;
+}
+.runnerbot4-mission strong {
+  display: block;
+  max-width: 890px;
+  font-family: var(--font-fraunces);
+  font-size: clamp(18px, 2.1vw, 25px);
+  line-height: 1.55;
+  font-weight: 500;
+}
+.runnerbot4-mission p {
+  color: rgba(255,255,255,0.75);
+  margin-top: 14px;
+  line-height: 1.7;
+  font-size: 13px;
+}
+.demo-card .mini-status {
+  display: inline-flex;
+  align-self: flex-start;
+  color: #38e500;
+  background: rgba(56,229,0,0.10);
+  border: 1px solid rgba(56,229,0,0.20);
+  line-height: 1.4;
+}
