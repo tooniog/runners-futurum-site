@@ -726,7 +726,7 @@ export default function Home() {
               <a href="#errands">Explore the operating model <span>→</span></a>
             </article>
           </div>
-          <div className="intel-principle" style={{ marginTop: 24 }}>
+          <div className="runnerbot4-mission">
             <span>RUNNERBOT 4 · PREPAREDNESS / MISSION · NOT LIVE</span>
             <strong>Future sovereign agent-authority infrastructure: Identity → Authority → Scope → Policy → Human Approval → Runtime Enforcement → Audit → Revocation / Kill.</strong>
             <p>Research and preparedness only. No completed implementation, institutional deployment or current commercial availability is claimed.</p>
